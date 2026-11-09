@@ -1,0 +1,15 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+  projects:
+    # Pinned to zmkfirmware/zmk main at the time this fork was configured
+    # (same commit as this repository's base). nice!nano v2 is board
+    # nice_nano//zmk in this revision; the old id nice_nano_v2 was removed
+    # with the Zephyr 4.1 / HWMv2 board migration.
+    - name: zmk
+      remote: zmkfirmware
+      revision: 4dd95d7840eb3d5a3f59bb29fbf1ab054715ef85
+      import: app/west.yml
+  self:
+    path: config

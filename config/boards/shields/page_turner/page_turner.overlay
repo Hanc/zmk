@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2026 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/*
+ * Four direct GPIO keys (switches short the pin to ground).
+ *
+ * Placeholder assignments are valid nice!nano v2 Pro Micro pins:
+ *   pro_micro 2 / D2 -> P0.17   previous page
+ *   pro_micro 3 / D3 -> P0.20   next page
+ *   pro_micro 4 / D4 -> P0.22   volume up
+ *   pro_micro 5 / D5 -> P0.24   volume down
+ *
+ * The nice!nano v2 board uses P0.06/P0.08 for UART, P0.13 for external
+ * power control, and P0.15 for the blue LED, so these four stay free.
+ * P0.17 and P0.20 are also the default (disabled) I2C SDA/SCL pinctrl
+ * pins. Remap them here if I2C is enabled or the wiring changes.
+ */
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+
+        input-gpios
+            = <&pro_micro 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <4>;
+        rows = <1>;
+        map = <RC(0,0) RC(0,1) RC(0,2) RC(0,3)>;
+    };
+
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        kscan = <&kscan0>;
+        transform = <&default_transform>;
+    };
+};
