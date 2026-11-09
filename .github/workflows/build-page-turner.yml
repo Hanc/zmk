@@ -1,0 +1,16 @@
+# User-config firmware build for the page_turner shield.
+# Upstream's full ZMK matrix stays in build.yml. This workflow follows
+# zmkfirmware/unified-zmk-config-template and calls the in-repo reusable
+# build-user-config workflow so a push uploads a .uf2 artifact.
+name: Build page-turner firmware
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-user-config.yml
+    permissions:
+      contents: read

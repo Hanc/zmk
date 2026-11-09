@@ -1,0 +1,9 @@
+file_format: "1"
+id: page_turner
+name: Page Turner
+type: shield
+url: https://github.com/Hanc/zmk
+description: Four-key BLE HID page turner (page up, page down, volume up, volume down).
+requires: [pro_micro]
+features:
+  - keys

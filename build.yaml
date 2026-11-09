@@ -1,0 +1,8 @@
+# GitHub Actions build matrix for the page-turner user config.
+# nice!nano v2 is selected as nice_nano//zmk (default revision 2.0.0).
+# The historical board id nice_nano_v2 no longer exists on current ZMK.
+---
+include:
+  - board: nice_nano//zmk
+    shield: page_turner
+    artifact-name: page_turner-nice_nano_v2

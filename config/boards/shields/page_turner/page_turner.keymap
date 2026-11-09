@@ -1,0 +1,29 @@
+/*
+ * Copyright (c) 2026 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+/*
+ * Default keymap. config/page_turner.keymap overrides this when building
+ * with ZMK_CONFIG set to the config directory.
+ */
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            display-name = "Default";
+            bindings = <
+                &kp PG_UP
+                &kp PG_DN
+                &kp C_VOL_UP
+                &kp C_VOL_DN
+            >;
+        };
+    };
+};
